@@ -170,7 +170,7 @@ implements Transparency
                             }
                         }
                     }
-                    if (!isMultipleOK(type) && !seen.add(Integers.valueOf(type)))
+                    if (!isMultipleOK(type) && !seen.add(type))
                         throw new PngException("Multiple " + PngConstants.getChunkName(type) + " chunks are not allowed",
                                                !PngConstants.isAncillary(type));
                     try {

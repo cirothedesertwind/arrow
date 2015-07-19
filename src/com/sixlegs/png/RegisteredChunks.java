@@ -133,13 +133,13 @@ class RegisteredChunks
             throw new PngException("Unrecognized interlace method: " + interlace, true);
         }
 
-        props.put(PngConstants.WIDTH, Integers.valueOf(width));
-        props.put(PngConstants.HEIGHT, Integers.valueOf(height));
-        props.put(PngConstants.BIT_DEPTH, Integers.valueOf(bitDepth));
-        props.put(PngConstants.INTERLACE, Integers.valueOf(interlace));
-        props.put(PngConstants.COMPRESSION, Integers.valueOf(compression));
-        props.put(PngConstants.FILTER, Integers.valueOf(filter));
-        props.put(PngConstants.COLOR_TYPE, Integers.valueOf(colorType));
+        props.put(PngConstants.WIDTH, width);
+        props.put(PngConstants.HEIGHT, height);
+        props.put(PngConstants.BIT_DEPTH, bitDepth);
+        props.put(PngConstants.INTERLACE, interlace);
+        props.put(PngConstants.COMPRESSION, compression);
+        props.put(PngConstants.FILTER, filter);
+        props.put(PngConstants.COLOR_TYPE, colorType);
     }
 
     private static void read_PLTE(DataInput in, int length, Map props, PngImage png)
@@ -273,9 +273,9 @@ class RegisteredChunks
         int unit = in.readUnsignedByte();
         if (unit != PngConstants.UNIT_UNKNOWN && unit != PngConstants.UNIT_METER)
             throw new PngException("Illegal pHYs chunk unit specifier: " + unit, false);
-        props.put(PngConstants.PIXELS_PER_UNIT_X, Integers.valueOf(pixelsPerUnitX));
-        props.put(PngConstants.PIXELS_PER_UNIT_Y, Integers.valueOf(pixelsPerUnitY));
-        props.put(PngConstants.UNIT, Integers.valueOf(unit));
+        props.put(PngConstants.PIXELS_PER_UNIT_X, pixelsPerUnitX);
+        props.put(PngConstants.PIXELS_PER_UNIT_Y, pixelsPerUnitY);
+        props.put(PngConstants.UNIT, unit);
     }
 
     private static void read_sBIT(DataInput in, int length, Map props, PngImage png)
@@ -300,7 +300,7 @@ class RegisteredChunks
     {
         checkLength(PngConstants.sRGB, length, 1);
         int intent = in.readByte();
-        props.put(PngConstants.RENDERING_INTENT, Integers.valueOf(intent));
+        props.put(PngConstants.RENDERING_INTENT, intent);
         props.put(PngConstants.GAMMA, new Float(0.45455));
         props.put(PngConstants.CHROMATICITY, new float[]{
             0.3127f, 0.329f, 0.64f, 0.33f, 0.3f, 0.6f, 0.15f, 0.06f,
@@ -412,9 +412,9 @@ class RegisteredChunks
         int disposalMethod = in.readUnsignedByte();
         int userInputFlag = in.readUnsignedByte();
         int delayTime = in.readUnsignedShort();
-        props.put(PngConstants.GIF_DISPOSAL_METHOD, Integers.valueOf(disposalMethod));
-        props.put(PngConstants.GIF_USER_INPUT_FLAG, Integers.valueOf(userInputFlag));
-        props.put(PngConstants.GIF_DELAY_TIME, Integers.valueOf(delayTime));
+        props.put(PngConstants.GIF_DISPOSAL_METHOD, disposalMethod);
+        props.put(PngConstants.GIF_USER_INPUT_FLAG, userInputFlag);
+        props.put(PngConstants.GIF_DELAY_TIME, delayTime);
     }
 
     private static void read_oFFs(DataInput in, int length, Map props)
@@ -427,9 +427,9 @@ class RegisteredChunks
         if (unit != PngConstants.POSITION_UNIT_PIXEL &&
             unit != PngConstants.POSITION_UNIT_MICROMETER)
             throw new PngException("Illegal oFFs chunk unit specifier: " + unit, false);
-        props.put(PngConstants.POSITION_X, Integers.valueOf(x));
-        props.put(PngConstants.POSITION_Y, Integers.valueOf(y));
-        props.put(PngConstants.POSITION_UNIT, Integers.valueOf(unit));
+        props.put(PngConstants.POSITION_X, x);
+        props.put(PngConstants.POSITION_Y, y);
+        props.put(PngConstants.POSITION_UNIT, unit);
     }
 
     private static void read_sCAL(DataInput in, int length, Map props)
@@ -446,7 +446,7 @@ class RegisteredChunks
         double height = readFloatingPoint(data, data.available());
         if (width <= 0 || height <= 0)
             throw new PngException("sCAL measurements must be >= 0", false);
-        props.put(PngConstants.SCALE_UNIT, Integers.valueOf(unit));
+        props.put(PngConstants.SCALE_UNIT, unit);
         props.put(PngConstants.PIXEL_WIDTH, new Double(width));
         props.put(PngConstants.PIXEL_HEIGHT, new Double(height));
     }
@@ -459,7 +459,7 @@ class RegisteredChunks
         switch (mode) {
         case PngConstants.STEREO_MODE_CROSS:
         case PngConstants.STEREO_MODE_DIVERGING:
-            props.put(PngConstants.STEREO_MODE, Integers.valueOf(mode));
+            props.put(PngConstants.STEREO_MODE, mode);
             break;
         default:
             throw new PngException("Unknown sTER mode: " + mode, false);
