@@ -130,8 +130,7 @@ class ImageFactory
             pp = new BasicPixelProcessor(dst, samples);
         if (config.getProgressive() && interlaced && !convertIndexed)
             pp = new ProgressivePixelProcessor(dst, pp, width, height);
-        pp = new ProgressUpdater(png, image, pp);
-
+        
         InflaterInputStream inflate = new InflaterInputStream(in, new Inflater(), 0x1000);
         Defilterer d = new Defilterer(inflate, bitDepth, samples, width, pp);
         
