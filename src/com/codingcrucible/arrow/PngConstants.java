@@ -43,8 +43,11 @@ package com.codingcrucible.arrow;
  * @see PngImage#getProperty
  * @see PngImage#getProperties
  */
-abstract public class PngConstants
+final class PngConstants
 {
+
+    private PngConstants() {
+    }
     
     /**
      * Returns {@code true} if the given chunk type has the ancillary bit set
