@@ -80,7 +80,7 @@ implements Transparency
     public BufferedImage read(File file)
     throws IOException
     {
-        return read(new BufferedInputStream(new FileInputStream(file)));
+        return read(new FileInputStream(file));
     }
 
     /**
