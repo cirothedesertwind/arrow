@@ -20,6 +20,7 @@ extends PixelProcessor
         this.pixels = new int[samples * 8];
     }
     
+    @Override
     public boolean process(int[] row, int xOffset, int xStep, int yStep, int y, int width)
     {
         // run non-progressive processor first

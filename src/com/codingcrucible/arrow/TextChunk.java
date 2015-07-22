@@ -10,23 +10,27 @@ public interface TextChunk
     /** 
      * Returns the Latin-1 (ISO-8859-1) encoded keyword
      * of this TextChunk.
+     * @return 
      */
     String getKeyword();
 
     /** 
      * Returns a translation of the keyword into the language
      * used by this TextChunk, or null if unspecified.
+     * @return 
      */
     String getTranslatedKeyword();
 
     /** 
      * Returns the language (RFC-1766) used by the translated 
      * keyword and the text, or null if unspecified.
+     * @return 
      */
     String getLanguage();
 
     /**
      * Returns the text of this TextChunk.
+     * @return 
      */
     String getText();
 

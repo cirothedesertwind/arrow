@@ -204,7 +204,7 @@ class RegisteredChunks
         if (gamma == 0)
             throw new PngException("Meaningless zero gAMA chunk value", false);
         if (!props.containsKey(PngConstants.RENDERING_INTENT))
-            props.put(PngConstants.GAMMA, new Float(gamma / 100000f));
+            props.put(PngConstants.GAMMA, gamma / 100000f);
     }
 
     private static void read_hIST(DataInput in, int length, Map props, PngImage png)
@@ -265,7 +265,7 @@ class RegisteredChunks
         checkLength(PngConstants.sRGB, length, 1);
         int intent = in.readByte();
         props.put(PngConstants.RENDERING_INTENT, intent);
-        props.put(PngConstants.GAMMA, new Float(0.45455));
+        props.put(PngConstants.GAMMA, 0.45455F);
         props.put(PngConstants.CHROMATICITY, new float[]{
             0.3127f, 0.329f, 0.64f, 0.33f, 0.3f, 0.6f, 0.15f, 0.06f,
         });
@@ -411,8 +411,8 @@ class RegisteredChunks
         if (width <= 0 || height <= 0)
             throw new PngException("sCAL measurements must be >= 0", false);
         props.put(PngConstants.SCALE_UNIT, unit);
-        props.put(PngConstants.PIXEL_WIDTH, new Double(width));
-        props.put(PngConstants.PIXEL_HEIGHT, new Double(height));
+        props.put(PngConstants.PIXEL_WIDTH, width);
+        props.put(PngConstants.PIXEL_HEIGHT, height);
     }
 
     private static void read_sTER(DataInput in, int length, Map props)

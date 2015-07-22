@@ -19,6 +19,7 @@ extends BasicPixelProcessor
         shiftAlpha = hasAlpha && shift > 0;
     }
     
+    @Override
     public boolean process(int[] row, int xOffset, int xStep, int yStep, int y, int width)
     {
         int total = samples * width;

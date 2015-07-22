@@ -1,6 +1,7 @@
 package com.codingcrucible.arrow;
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 /**
@@ -15,7 +16,7 @@ extends IOException
     private static Method getInitCause() {
         try {
             return PngException.class.getMethod("initCause", new Class[] {Throwable.class});
-        } catch (Exception e) {
+        } catch (NoSuchMethodException | SecurityException e) {
             return null;
         }
     }
@@ -36,7 +37,7 @@ extends IOException
                 initCause.invoke(this, new Object[] {cause});
             } catch (RuntimeException e) {
                 throw e;
-            } catch (Exception e) {
+            } catch (IllegalAccessException | InvocationTargetException e) {
                 throw new IllegalStateException("Error invoking initCause: " + e.getMessage());
             }
         }

@@ -22,6 +22,7 @@ extends RasterDestination
         singlePixel = new int[raster.getNumBands()];
     }
 
+    @Override
     public void setPixels(int x, int y, int w, int[] pixels)
     {
         if (((y - yoff) % ysub) == 0) {
@@ -40,6 +41,7 @@ extends RasterDestination
         }
     }
 
+    @Override
     public void setPixel(int x, int y, int[] pixel)
     {
         x -= xoff;
@@ -48,6 +50,7 @@ extends RasterDestination
             super.setPixel(x / xsub, y / ysub, pixel);
     }
 
+    @Override
     public void getPixel(int x, int y, int[] pixel)
     {
         throw new UnsupportedOperationException();

@@ -10,7 +10,7 @@ class StateMachine
     public static final int STATE_AFTER_IDAT = 5;
     public static final int STATE_END = 6;
 
-    private PngImage png;
+    private final PngImage png;
     private int state = STATE_START;
     private int type;
 

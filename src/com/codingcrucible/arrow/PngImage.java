@@ -42,6 +42,7 @@ implements Transparency
 
     /**
      * Constructor which uses the specified configuration.
+     * @param config
      */
     public PngImage(PngConfig config)
     {
@@ -95,7 +96,6 @@ implements Transparency
      * Multiple images can be read using the same {@code PngImage} instance.
      * A new property map is created each time this method is called.
      * @param in the input stream to read
-     * @param close whether to close the input stream after reading
      * @return the decoded image, or null if no image was decoded
      * @throws IOException if any error occurred while reading the image
      * @see #read(java.io.File)
@@ -231,6 +231,7 @@ implements Transparency
      * <p>
      * By default, this method will re-throw the warning if the
      * {@link PngConfig#getWarningsFatal warningsFatal} property is true.
+     * @param e
      * @throws PngException if the warning should be treated as fatal
      */
     protected void handleWarning(PngException e)
@@ -242,6 +243,7 @@ implements Transparency
     
     /** 
      * Returns the image widt hin pixels.
+     * @return 
      * @throws IllegalStateException if an image has not been read
      */
     public int getWidth()
@@ -251,6 +253,7 @@ implements Transparency
 
     /** 
      * Returns the image height in pixels.
+     * @return 
      * @throws IllegalStateException if an image has not been read
      */
     public int getHeight()
@@ -299,6 +302,7 @@ implements Transparency
      * @return the field type of this Transparency, which is either OPAQUE, BITMASK or TRANSLUCENT.
      * @throws IllegalStateException if an image has not been read
      */
+    @Override
     public int getTransparency()
     {
         int colorType = getColorType();
@@ -587,6 +591,7 @@ implements Transparency
      * @param in the chunk data
      * @param offset the location of the chunk data within the entire PNG datastream
      * @param length the length of the chunk data
+     * @throws java.io.IOException
      */
     protected void readChunk(int type, DataInput in, long offset, int length)
     throws IOException

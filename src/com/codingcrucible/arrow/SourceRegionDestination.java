@@ -19,6 +19,7 @@ extends Destination
         samples = dst.getRaster().getNumBands();
     }
 
+    @Override
     public void setPixels(int x, int y, int w, int[] pixels)
     {
         if (y >= yoff && y < yoff + ylen) {
@@ -32,6 +33,7 @@ extends Destination
         }
     }
 
+    @Override
     public void setPixel(int x, int y, int[] pixel)
     {
         x -= xoff;
@@ -40,21 +42,25 @@ extends Destination
             dst.setPixel(x, y, pixel);
     }
 
+    @Override
     public void getPixel(int x, int y, int[] pixel)
     {
         throw new UnsupportedOperationException();
     }
 
+    @Override
     public WritableRaster getRaster()
     {
         return dst.getRaster();
     }
 
+    @Override
     public int getSourceWidth()
     {
         return dst.getSourceWidth();
     }
 
+    @Override
     public void done()
     {
         dst.done();

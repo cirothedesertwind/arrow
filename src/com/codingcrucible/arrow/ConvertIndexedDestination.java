@@ -22,6 +22,7 @@ extends Destination
         row = new int[width * dstSamples + sampleDiff];
     }
 
+    @Override
     public void setPixels(int x, int y, int w, int[] pixels)
     {
         for (int i = w - 1, off = dstSamples * i; i >= 0; i--, off -= dstSamples)
@@ -31,27 +32,32 @@ extends Destination
         dst.setPixels(x, y, w, row);
     }
 
+    @Override
     public void setPixel(int x, int y, int[] pixel)
     {
         setPixels(x, y, 1, pixel);
     }
 
+    @Override
     public void getPixel(int x, int y, int[] pixel)
     {
         // TODO: convert backwards (requires looking up palette index)
         throw new UnsupportedOperationException("implement me");
     }
 
+    @Override
     public WritableRaster getRaster()
     {
         return dst.getRaster();
     }
 
+    @Override
     public int getSourceWidth()
     {
         return dst.getSourceWidth();
     }
 
+    @Override
     public void done()
     {
         dst.done();

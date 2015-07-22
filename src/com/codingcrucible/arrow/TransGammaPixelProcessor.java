@@ -21,6 +21,7 @@ extends BasicPixelProcessor
         temp = new int[samples * dst.getSourceWidth()];
     }
     
+    @Override
     public boolean process(int[] row, int xOffset, int xStep, int yStep, int y, int width)
     {
         int total = width * samplesNoAlpha;

@@ -100,6 +100,7 @@ final public class PngConfig
 
         /**
          * Create a configuration using the current values of this builder.
+         * @return 
          */
         public PngConfig build()
         {
@@ -110,6 +111,7 @@ final public class PngConfig
          * Enables or disables 16-bit reduction. If enabled, 16-bit samples are reduced to 8-bit samples by
          * shifting to the right by 8 bits. Default is <i>true</i>.
          * @param reduce16 enable 16-bit reduction
+         * @return 
          */
         public Builder reduce16(boolean reduce16)
         {
@@ -121,6 +123,7 @@ final public class PngConfig
          * Sets the default gamma value. This value is used unless the image
          * contains an explicit gamma value. Initial value is <i>1/45455</i>.
          * @param defaultGamma the default gamma value
+         * @return 
          */
         public Builder defaultGamma(float defaultGamma)
         {
@@ -134,6 +137,7 @@ final public class PngConfig
          * work well with most PC displays. If the operating system has
          * a gamma lookup table (e.g. Macintosh) the display exponent should be lower.
          * @param displayExponent the display exponent
+         * @return 
          */
         public Builder displayExponent(float displayExponent)
         {
@@ -146,6 +150,7 @@ final public class PngConfig
          * Sets to false if your application will perform gamma correctly manually.
          * Default is <i>true</i>.
          * @param gammaCorrect use gamma correction
+         * @return 
          * @see PngImage#getGamma
          * @see PngImage#getGammaTable
          */
@@ -163,6 +168,7 @@ final public class PngConfig
          * gradually replaces the old, at the cost of some additional processing time.
          * Default is <i>false</i>.
          * @param progressive use progressive display
+         * @return 
          * @see PngImage#handlePass
          */
         public Builder progressive(boolean progressive)
@@ -181,6 +187,7 @@ final public class PngConfig
          *    {@link #READ_UNTIL_DATA READ_UNTIL_DATA},<br>
          *    {@link #READ_EXCEPT_DATA READ_EXCEPT_DATA},<br>
          *    or {@link #READ_EXCEPT_METADATA READ_EXCEPT_METADATA}
+         * @return 
          */
         public Builder readLimit(int readLimit)
         {
@@ -194,6 +201,7 @@ final public class PngConfig
          * method. If warnings are configured as fatal, that method will re-throw the
          * exception, which will abort image processing. Default is <i>false</i>.
          * @param warningsFatal true if warnings should be treated as fatal errors
+         * @return 
          * @see PngImage#handleWarning
          */
         public Builder warningsFatal(boolean warningsFatal)
@@ -206,6 +214,8 @@ final public class PngConfig
          * Decode only a particular region of the source image. See the equivalent
          * {@linkplain javax.imageio.IIOParam#setSourceRegion ImageIO method}
          * for full documentation.
+         * @param sourceRegion
+         * @return 
          */
         public Builder sourceRegion(Rectangle sourceRegion)
         {
@@ -227,6 +237,11 @@ final public class PngConfig
          * periodic rows and/or columns of the image. See the equivalent
          * {@linkplain javax.imageio.IIOParam#setSourceSubsampling ImageIO method}
          * for full documentation.
+         * @param xsub
+         * @param ysub
+         * @param xoff
+         * @param yoff
+         * @return 
          */
         public Builder sourceSubsampling(int xsub, int ysub, int xoff, int yoff)
         {
@@ -241,6 +256,8 @@ final public class PngConfig
         /**
          * Whether to convert images with an indexed color model
          * (paletted and 1/2/4/8-bit grayscale) to use a component color model.
+         * @param convertIndexed
+         * @return 
          */
         public Builder convertIndexed(boolean convertIndexed)
         {
@@ -251,6 +268,7 @@ final public class PngConfig
 
     /**
      * Return sthe current indexed image conversion setting.
+     * @return 
      * @see Builder#convertIndexed
      */
     public boolean getConvertIndexed()
@@ -260,6 +278,7 @@ final public class PngConfig
 
     /**
      * Returns the current 16-bit reduction setting.
+     * @return 
      * @see Builder#reduce16
      */
     public boolean getReduce16()
@@ -269,6 +288,7 @@ final public class PngConfig
 
     /**
      * Returns the current default gamma value.
+     * @return 
      * @see Builder#defaultGamma
      */
     public float getDefaultGamma()
@@ -278,6 +298,7 @@ final public class PngConfig
 
     /**
      * Returns the current gamma correction setting.
+     * @return 
      * @see Builder#gammaCorrect
      */
     public boolean getGammaCorrect()
@@ -287,6 +308,7 @@ final public class PngConfig
 
     /**
      * Returns the current progressive display setting.
+     * @return 
      * @see Builder#progressive
      */
     public boolean getProgressive()
@@ -296,6 +318,7 @@ final public class PngConfig
 
     /**
      * Returns the current display exponent.
+     * @return 
      * @see Builder#displayExponent
      */
     public float getDisplayExponent()
@@ -320,6 +343,7 @@ final public class PngConfig
 
     /**
      * Returns whether warnings are treated as fatal errors.
+     * @return 
      * @see Builder#warningsFatal
      */
     public boolean getWarningsFatal()
@@ -329,6 +353,7 @@ final public class PngConfig
 
     /**
      * Returns the source region to be used.
+     * @return 
      * @see Builder#sourceRegion
      */
     public Rectangle getSourceRegion()
@@ -338,6 +363,7 @@ final public class PngConfig
 
     /**
      * Returns the number of source columns to advance for each pixel.
+     * @return 
      * @see Builder#sourceSubsampling
      */
     public int getSourceXSubsampling()
@@ -347,6 +373,7 @@ final public class PngConfig
 
     /**
      * Returns the number of rows to advance for each pixel.
+     * @return 
      * @see Builder#sourceSubsampling
      */
     public int getSourceYSubsampling()
@@ -356,6 +383,7 @@ final public class PngConfig
 
     /**
      * Returns the horizontal offset of the subsampling grid.
+     * @return 
      * @see Builder#sourceSubsampling
      */
     public int getSubsamplingXOffset()
@@ -365,6 +393,7 @@ final public class PngConfig
 
     /**
      * Returns the vertical offset of the subsampling grid.
+     * @return 
      * @see Builder#sourceSubsampling
      */
     public int getSubsamplingYOffset()

@@ -65,6 +65,7 @@ implements DataInput
 
     ////////// count/crc InputStream methods //////////
 
+    @Override
     public int read()
     throws IOException
     {
@@ -78,6 +79,7 @@ implements DataInput
         return result;
     }
     
+    @Override
     public int read(byte[] b, int off, int len)
     throws IOException
     {
@@ -93,6 +95,7 @@ implements DataInput
         return result;
     }
 
+    @Override
     public long skip(long n)
     throws IOException
     {
@@ -100,6 +103,7 @@ implements DataInput
         return (result < 0) ? 0 : result;
     }
 
+    @Override
     public void close()
     {
         throw new UnsupportedOperationException("do not close me");
@@ -107,12 +111,14 @@ implements DataInput
     
     ////////// DataInput methods we implement directly //////////
 
+    @Override
     public boolean readBoolean()
     throws IOException
     {
         return readUnsignedByte() != 0;
     }
 
+    @Override
     public int readUnsignedByte()
     throws IOException
     {
@@ -122,12 +128,14 @@ implements DataInput
         return a;
     }
 
+    @Override
     public byte readByte()
     throws IOException
     {
         return (byte)readUnsignedByte();
     }
 
+    @Override
     public int readUnsignedShort()
     throws IOException
     {
@@ -135,21 +143,24 @@ implements DataInput
         int b = read();
         if ((a | b) < 0)
             throw new EOFException();
-        return (a << 8) + (b << 0);
+        return (a << 8) + (b);
     }
 
+    @Override
     public short readShort()
     throws IOException
     {
         return (short)readUnsignedShort();
     }
 
+    @Override
     public char readChar()
     throws IOException
     {
         return (char)readUnsignedShort();
     }
 
+    @Override
     public int readInt()
     throws IOException
     {
@@ -159,21 +170,24 @@ implements DataInput
         int d = read();
         if ((a | b | c | d) < 0)
             throw new EOFException();
-        return ((a << 24) + (b << 16) + (c << 8) + (d << 0));
+        return ((a << 24) + (b << 16) + (c << 8) + (d));
     }
 
+    @Override
     public long readLong()
     throws IOException
     {
         return ((0xFFFFFFFFL & readInt()) << 32) | (0xFFFFFFFFL & readInt());
     }
 
+    @Override
     public float readFloat()
     throws IOException
     {
         return Float.intBitsToFloat(readInt());
     }
 
+    @Override
     public double readDouble()
     throws IOException
     {
@@ -182,30 +196,35 @@ implements DataInput
     
     ////////// DataInput methods we delegate //////////
 
+    @Override
     public void readFully(byte[] b)
     throws IOException
     {
         data.readFully(b, 0, b.length);
     }
     
+    @Override
     public void readFully(byte[] b, int off, int len)
     throws IOException
     {
         data.readFully(b, off, len);
     }
 
+    @Override
     public int skipBytes(int n)
     throws IOException
     {
         return data.skipBytes(n);
     }
 
+    @Override
     public String readLine()
     throws IOException
     {
         return data.readLine();
     }
 
+    @Override
     public String readUTF()
     throws IOException
     {

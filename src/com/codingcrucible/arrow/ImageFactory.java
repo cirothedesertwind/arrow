@@ -12,9 +12,9 @@ import java.util.zip.InflaterInputStream;
 
 class ImageFactory
 {
-    private static short[] GAMMA_TABLE_45455 =
+    private static final short[] GAMMA_TABLE_45455 =
         PngImage.createGammaTable(0.45455f, 2.2f, false);
-    private static short[] GAMMA_TABLE_100000 =
+    private static final short[] GAMMA_TABLE_100000 =
         PngImage.createGammaTable(1f, 2.2f, false);
 
     public static BufferedImage createImage(PngImage png, InputStream in)

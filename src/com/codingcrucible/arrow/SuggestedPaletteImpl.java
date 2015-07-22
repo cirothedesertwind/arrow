@@ -18,21 +18,25 @@ implements SuggestedPalette
         sampleCount = bytes.length / entrySize;
     }
 
+    @Override
     public String getName()
     {
         return name;
     }
         
+    @Override
     public int getSampleCount()
     {
         return sampleCount;
     }
         
+    @Override
     public int getSampleDepth()
     {
         return sampleDepth;
     }
 
+    @Override
     public void getSample(int index, short[] pixel)
     {
         int from = index * entrySize;
@@ -50,6 +54,7 @@ implements SuggestedPalette
         }
     }
         
+    @Override
     public int getFrequency(int index)
     {
         int from = (index + 1) * entrySize - 2;

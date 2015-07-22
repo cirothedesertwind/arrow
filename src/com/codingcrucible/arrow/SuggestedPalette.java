@@ -13,11 +13,13 @@ public interface SuggestedPalette
      * Returns palette name. This is any convenient name for
      * referring to the palette. The name will be unique across all
      * suggested palettes in the same image.
+     * @return 
      */
     String getName();
 
     /**
      * Returns the number of samples.
+     * @return 
      */
     int getSampleCount();
 
@@ -47,6 +49,7 @@ public interface SuggestedPalette
      * space. The range of individual values will reasonably fill 0 to 65535.
      * Entries appear in decreasing order of frequency.
      * @param index the sample index
+     * @return 
      */
     int getFrequency(int index);
 }

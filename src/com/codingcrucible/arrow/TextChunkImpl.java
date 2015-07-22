@@ -18,26 +18,31 @@ implements TextChunk
         this.type = type;
     }
     
+    @Override
     public String getKeyword()
     {
         return keyword;
     }
 
+    @Override
     public String getTranslatedKeyword()
     {
         return translated;
     }
 
+    @Override
     public String getLanguage()
     {
         return language;
     }
 
+    @Override
     public String getText()
     {
         return text;
     }
 
+    @Override
     public int getType()
     {
         return type;

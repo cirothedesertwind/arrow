@@ -16,12 +16,14 @@ extends InputStream
         this.machine = machine;
     }
     
+    @Override
     public int read()
     throws IOException
     {
         return (read(onebyte, 0, 1) == -1) ? -1 : 0xFF & onebyte[0];
     }
 
+    @Override
     public int read(byte[] b, int off, int len)
     throws IOException
     {
