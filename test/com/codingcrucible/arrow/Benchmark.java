@@ -43,7 +43,7 @@ public class Benchmark
     public static void main(String[] args)
     throws Exception
     {
-        int loop = (args.length > 0) ? Integer.parseInt(args[0]) : 1;
+        int loop = (args.length > 0) ? Integer.parseInt(args[0]) : 25;
         List<String> list = Files.readAllLines(Paths.get("benchmark.txt"));
         
         long t;
