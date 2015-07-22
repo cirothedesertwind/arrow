@@ -10,21 +10,24 @@ import java.util.*;
 import java.util.zip.Inflater;
 import java.util.zip.InflaterInputStream;
 
-class ImageFactory
+final class ImageFactory
 {
+    private ImageFactory() {
+    }
+    
     private static final short[] GAMMA_TABLE_45455 =
         PngImage.createGammaTable(0.45455f, 2.2f, false);
     private static final short[] GAMMA_TABLE_100000 =
         PngImage.createGammaTable(1f, 2.2f, false);
 
-    public static BufferedImage createImage(PngImage png, InputStream in)
+    static final BufferedImage createImage(PngImage png, InputStream in)
     throws IOException
     {
         return createImage(png, in, new Dimension(png.getWidth(), png.getHeight()));
     }
 
     // width and height are overridable for APNG
-    public static BufferedImage createImage(PngImage png, InputStream in, Dimension size)
+    static final BufferedImage createImage(PngImage png, InputStream in, Dimension size)
     throws IOException
     {
         PngConfig config = png.getConfig();
