@@ -1,10 +1,8 @@
 package com.codingcrucible.arrow;
 
-import com.codingcrucible.arrow.PngImage;
-import com.codingcrucible.arrow.PngConfig;
-import java.awt.*;
 import java.io.*;
-import java.util.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.List;
 import javax.imageio.ImageIO;
 
@@ -12,31 +10,19 @@ public class Benchmark
 {
     interface Decode
     {
-        void read(File file) throws IOException;
+        void read(InputStream is) throws IOException;
     }
     
     enum Decoder implements Decode{
-    TOOLKIT("Toolkit"){
-        private MediaTracker tracker = new MediaTracker(new Component(){});
-        private Toolkit toolkit = Toolkit.getDefaultToolkit();
-        public void read(File file) throws IOException {
-            try {
-                tracker.addImage(toolkit.createImage(file.toURL()), 0);
-                tracker.waitForID(0);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-        }
-    },
         IMAGEIO("ImageIO"){
-        public void read(File file) throws IOException {
-            ImageIO.read(file);
+        public void read(InputStream is) throws IOException {
+            ImageIO.read(is);
         }
     },
             SIXLEGS("SixLegs2"){
         private PngConfig config = new PngConfig.Builder().build();
-        public void read(File file) throws IOException {
-            new PngImage(config).read(file);
+        public void read(InputStream is) throws IOException {
+            new PngImage(config).read(is);
         }
         };
     
@@ -52,39 +38,37 @@ public class Benchmark
     throws Exception
     {
         int loop = (args.length > 0) ? Integer.parseInt(args[0]) : 1;
-        BufferedReader r = new BufferedReader(new FileReader("benchmark.txt"));
-        List list = new ArrayList();
-        String line;
-        while ((line = r.readLine()) != null)
-            list.add(new File(line));
-        File[] files = (File[])list.toArray(new File[list.size()]);
+        List<String> list = Files.readAllLines(Paths.get("benchmark.txt"));
         
         long t;
         for (Decoder d : Decoder.values()){
             t = 0;
             for (int i = 0; i < loop; i++)
-                t+= benchmark(files, d);
+                t+= benchmark(list, d);
             
-            System.err.println(d.name + ": read " + (files.length * loop) + " images in " + t + " ms");
+            System.err.println(d.name + ": read " + (list.size() * loop) + " images in " + t + " ms");
         }
     }
 
-    private static long benchmark(File[] files, Decoder reader)
+    private static long benchmark(List<String> files, Decoder reader)
     throws IOException
     {
-        File cur = null;
+        InputStream cur;
         try {
             
-            long t = System.currentTimeMillis();
+            long total = 0;
+            long t = 0;
             
-                for (int j = 0; j < files.length; j++) {
-                    cur = files[j];
-                    reader.read(cur);
-                }
+            for (String f : files) {
+                cur = new ByteArrayInputStream(Files.readAllBytes(Paths.get(f)));
+                t = System.currentTimeMillis();
+                reader.read(cur);
+                total += System.currentTimeMillis() - t;
+            }
             
-            return System.currentTimeMillis() - t;
+            return total;
         } catch (IOException e) {
-            System.err.println("Error reading " + cur);
+            System.err.println("Error reading");
             throw e;
         }
     }
