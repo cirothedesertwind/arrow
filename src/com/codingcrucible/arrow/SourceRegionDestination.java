@@ -3,8 +3,7 @@ package com.codingcrucible.arrow;
 import java.awt.image.WritableRaster;
 import java.awt.Rectangle;
 
-final class SourceRegionDestination
-extends Destination
+final class SourceRegionDestination implements Destination
 {
     private final Destination dst;
     private final int xoff, yoff, xlen, ylen, samples;

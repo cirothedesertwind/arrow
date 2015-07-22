@@ -1,7 +1,6 @@
 package com.codingcrucible.arrow;
 
-class BasicPixelProcessor
-extends PixelProcessor
+class BasicPixelProcessor implements PixelProcessor
 {
     protected final Destination dst;
     protected final int samples;

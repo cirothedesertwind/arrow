@@ -1,7 +1,6 @@
 package com.codingcrucible.arrow;
 
-final class ProgressivePixelProcessor
-extends PixelProcessor
+final class ProgressivePixelProcessor implements PixelProcessor
 {
     private final PixelProcessor pp;
     private final int imgWidth;

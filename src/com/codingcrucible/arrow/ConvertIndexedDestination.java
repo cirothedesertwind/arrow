@@ -2,8 +2,7 @@ package com.codingcrucible.arrow;
 
 import java.awt.image.*;
 
-class ConvertIndexedDestination
-extends Destination
+class ConvertIndexedDestination implements Destination
 {
     private final Destination dst;
     private final IndexColorModel srcColorModel;

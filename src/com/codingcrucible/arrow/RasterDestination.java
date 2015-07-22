@@ -2,8 +2,7 @@ package com.codingcrucible.arrow;
 
 import java.awt.image.WritableRaster;
 
-class RasterDestination
-extends Destination
+class RasterDestination implements Destination
 {
     protected final WritableRaster raster;
     protected final int sourceWidth;
