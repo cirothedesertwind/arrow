@@ -19,7 +19,13 @@ public class Benchmark
             ImageIO.read(is);
         }
     },
-            SIXLEGS("SixLegs2"){
+        SIXLEGS("SixLegs2"){
+        private com.sixlegs.png.PngConfig config = new com.sixlegs.png.PngConfig.Builder().build();
+        public void read(InputStream is) throws IOException {
+            new com.sixlegs.png.PngImage(config).read(is, true);
+        }
+        },
+            Arrow("Arrow"){
         private PngConfig config = new PngConfig.Builder().build();
         public void read(InputStream is) throws IOException {
             new PngImage(config).read(is);
