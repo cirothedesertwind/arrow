@@ -264,33 +264,7 @@ extends PngTestCase
         assertEquals(138, png.getWidth());
         assertEquals(180, png.getHeight());
     }
-
-    public void testProgressBar()
-    throws Exception
-    {
-        final List progress = new ArrayList();
-        readResource("/images/misc/cc1.png", new PngImage(){
-            protected boolean handleProgress(BufferedImage image, float pct) {
-                progress.add(new Float(pct));
-                return pct < 60f;
-            }
-        });
-        assertEquals(Arrays.asList(new Float[]{
-            new Float(5.5555553f),
-            new Float(10.555555f),
-            new Float(15.555555f),
-            new Float(20.555555f),
-            new Float(25.555555f),
-            new Float(30.555555f),
-            new Float(35.555557f),
-            new Float(40.555557f),
-            new Float(45.555557f),
-            new Float(50.555557f),
-            new Float(55.555557f),
-            new Float(60.555557f),
-        }), progress);
-    }
-
+    
     public void testAbort()
     throws Exception
     {
